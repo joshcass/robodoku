@@ -14,7 +14,10 @@ end
 class Board
 
   def initialize(rows)
-    @rows = rows.map { |char| Spot.new(char) }
+
+    @rows =
+
+      end
   end
 
   # turn spots into a hash
@@ -23,6 +26,12 @@ class Board
   # init new squares w/ corresponding spots
 end
 
+
+class Row
+  def initialize(row)
+    @spots = row.
+  end
+end
 
 
 class Spot
