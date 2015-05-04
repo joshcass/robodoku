@@ -1,8 +1,8 @@
 class Solver
 
   def initialize(puzzle_text)
-    rows = puzzle_text.map {|row| row.chomp.rjust(9, " ")}
-    @board = Board.new(rows)
+    row_groups = puzzle_text.map {|row| row.chomp.rjust(9, " ")}
+    @board = Board.new(row_groups)
   end
 
   def solve
@@ -12,13 +12,20 @@ class Solver
 end
 
 class Board
+  attr_reader :rows
 
-  def initialize(rows)
-
-    @rows =
-
-      end
+  def initialize(row_groups)
+    @rows = (1..9).zip(row_groups).reduce({}) do |hash, group|
+      hash[group.first] = Row.new(group.last)
+      hash
+    end
+    @columns = (1..9).reduce({}) do |hash, key|
+      hash[key] = Column.new(rows.map do |_, row|
+          row.spots[key])
+        end
+    end
   end
+
 
   # turn spots into a hash
   # initialize new rows with corresponding spots
@@ -28,19 +35,21 @@ end
 
 
 class Row
+  attr_reader :spots
+
   def initialize(row)
-    @spots = row.
+    @spots = (1..9).zip(row).reduce({}) do |hash, value|
+      hash[value.first] = Spot.new(value.last)
   end
 end
 
 
 class Spot
+  attr_reader :value
+
   def initialize(value)
     @value = value
   end
-
-  # if value is a number remove that number from possibilites
-  # otherwise don't do anything
 
   def possiblities
     [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -50,7 +59,3 @@ class Spot
     false if value == " "
   end
 end
-
-
-# start looking at each square row and column and eliminate possiblites for the spots
-#
