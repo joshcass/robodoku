@@ -1,5 +1,6 @@
 class Row
   attr_reader :spots
+  alias to_ary spots
 
   def initialize(spots)
     @spots = spots
