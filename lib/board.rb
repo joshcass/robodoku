@@ -17,10 +17,10 @@ class Board
                     .each_slice(9).map {|sqr_spots| Square.new(sqr_spots)}
   end
 
-  def all_check
-    rows.each {|row| row.row_check}
-    columns.each {|column| column.column_check}
-    squares.each {|square| square.square_check}
+  def remove_all_candidates
+    rows.each {|row| row.remove_candidates}
+    columns.each {|column| column.remove_candidates}
+    squares.each {|square| square.remove_candidates}
   end
 
   def all_locked?

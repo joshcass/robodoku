@@ -5,7 +5,7 @@ class Square
     @spots = spots
   end
 
-  def square_check
+  def remove_candidates
     unlocked_spots = spots.reject {|spot| spot.locked?}
     spots.each do |spot|
       if spot.locked?

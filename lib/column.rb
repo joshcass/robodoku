@@ -5,7 +5,7 @@ class Column
     @spots = spots
   end
 
-  def column_check
+  def remove_candidates
     unlocked_spots = spots.reject {|spot| spot.locked?}
     spots.each do |spot|
       if spot.locked?
