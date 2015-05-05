@@ -17,7 +17,7 @@ RSpec.describe Solver do
 
   it 'solves a simple puzzle' do
     puzzle = <<-PUZZLE
-    |  26594317
+    | -26594317
     | 715638942
     | 394721865
     | 163459278
@@ -41,9 +41,29 @@ RSpec.describe Solver do
     assert_solves puzzle, solution
   end
 
-  xit 'solves a slightly harder puzzle' do
-    puzzle_text2 = ["165794 38\n", "4 7  2 5 \n", "93   6  4\n", "81 4 5  2\n", "5762394  \n", "2  6 1 75\n", "3 15 7849\n", "69    527\n", " 5  281 3\n"]
-    @solver2 = Solver.new(puzzle_text2)
-    # puts @solver2.solve
+  it 'solves a slightly harder puzzle' do
+    puzzle = <<-PUZZLE
+    | 4--3-6--8
+    | -2-89--7-
+    | --85--4--
+    | 764258-13
+    | -5-1---2-
+    | 9--7-3--4
+    | --69--142
+    | -3--8-659
+    | 1--6-5--7
+    PUZZLE
+    solution = <<-SOLUTION
+    | 475316298
+    | 621894375
+    | 398572461
+    | 764258913
+    | 853149726
+    | 912763584
+    | 586937142
+    | 237481659
+    | 149625837
+    SOLUTION
+    assert_solves puzzle, solution
   end
 end
