@@ -14,6 +14,6 @@ class Spot
   end
 
   def locked?
-    value != " "
+    value != "-"
   end
 end

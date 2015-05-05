@@ -1,6 +1,6 @@
 require './lib/solver'
 
 puzzle_path = ARGV[0]
-puzzle_text = File.readlines(puzzle_path)
-solver = Solver.new(puzzle_text)
-puts solver.solve
+chars       = File.read(puzzle_path).gsub("\n", "").gsub(" ", "-").chars
+solved      = Solver.solve(chars)
+solved.each_slice(9) { |slice| puts slice.join }

@@ -7,19 +7,14 @@ require_relative 'square'
 class Board
   attr_reader :rows, :columns, :squares, :spots
 
-  def initialize(row_groups)
-    @spots = row_groups.flat_map {|row_group| row_group.each_char.map {|value| Spot.new(value)}}
-    @rows = spots.each_slice(9).map {|slice| Row.new(slice)}
-    @columns = (0..8).flat_map {|index| Column.new(rows.map {|row| row.spots[index]})}
-    @squares = [Square.new(rows[0..2].flat_map {|row| row.spots[0..2]}),
-                Square.new(rows[0..2].flat_map {|row| row.spots[3..5]}),
-                Square.new(rows[0..2].flat_map {|row| row.spots[6..8]}),
-                Square.new(rows[3..5].flat_map {|row| row.spots[0..2]}),
-                Square.new(rows[3..5].flat_map {|row| row.spots[3..5]}),
-                Square.new(rows[3..5].flat_map {|row| row.spots[6..8]}),
-                Square.new(rows[6..8].flat_map {|row| row.spots[0..2]}),
-                Square.new(rows[6..8].flat_map {|row| row.spots[3..5]}),
-                Square.new(rows[6..8].flat_map {|row| row.spots[6..8]})]
+  def initialize(board_chars)
+    @spots   = board_chars.map { |value| Spot.new value }
+    @rows    = spots.each_slice(9).map { |slice| Row.new slice }
+    @columns = @rows.transpose.map { |spots| Column.new spots }
+    @squares = spots.each_slice(9)
+                    .each_slice(3)
+                    .flat_map {|row| row.transpose.flatten}
+                    .each_slice(9).map {|sqr_spots| Square.new(sqr_spots)}
   end
 
   def all_check
@@ -31,5 +26,4 @@ class Board
   def all_locked?
     spots.all? {|spot| spot.locked?}
   end
-
 end
