@@ -41,7 +41,7 @@ RSpec.describe Solver do
     assert_solves puzzle, solution
   end
 
-  xit 'solves an intermediate puzzle' do
+  it 'solves an intermediate puzzle' do
     puzzle = <<-PUZZLE
     | -2-6-8---
     | 58---97--

@@ -21,6 +21,8 @@ class Board
                     .flat_map {|row| row.transpose.flatten}
                     .each_slice(9)
                     .map {|sqr_spots| Square.new(sqr_spots)}
+    require 'pry'
+    binding.pry
   end
 
   def remove_all_candidates
@@ -28,6 +30,11 @@ class Board
     columns.each {|column| column.remove_candidates}
     squares.each {|square| square.remove_candidates}
   end
+
+  def remove_sqr_locked_candidates
+
+  end
+
 
   def all_locked?
     spots.all? {|spot| spot.locked?}
