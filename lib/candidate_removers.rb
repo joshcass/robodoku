@@ -1,4 +1,4 @@
-require 'set'  # => true
+require 'set'
 
 module CandidateRemovers
 
@@ -14,7 +14,7 @@ module CandidateRemovers
   def remove_locked_values
     spots.each do |spot|
       if spot.locked?
-        unlocked_spots.each {|s| s.remove_candidate(spot.value)}
+        unlocked_spots.each { |s| s.remove_candidate(spot.value) }
       end
     end
   end
@@ -23,7 +23,7 @@ module CandidateRemovers
     unlocked_spots.each do |spot|
       spts = unlocked_spots
       spts.delete(spot).candidates.each do |cdt|
-        unless spts.reduce([]) {|ary, spt| ary + spt.candidates}.to_set.merge(spots.map {|spt| spt.value}).include?(cdt)
+        unless spts.reduce([]) { |ary, spt| ary + spt.candidates }.to_set.merge(spots.map { |spt| spt.value }).include?(cdt)
           spot.value = cdt
         end
       end
@@ -63,7 +63,7 @@ module CandidateRemovers
           @crnt_cdt1 = cdt
           crnt.candidates.each do |cnd|
             if cnd != @crnt_cdt1
-              spt2 = spts.select {|sp| sp.candidates.include?(cnd)}
+              spt2 = spts.select { |sp| sp.candidates.include?(cnd) }
               if spt2.length == 1
                 @spt2 = spt2.first
                 @crnt_cdt2 = cnd
@@ -88,6 +88,6 @@ module CandidateRemovers
   end
 
   def unlocked_spots
-    spots.reject {|spot| spot.locked?}
+    spots.reject { |spot| spot.locked? }
   end
 end
