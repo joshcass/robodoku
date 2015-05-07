@@ -1,10 +1,9 @@
 class Spot
-  attr_reader :candidates
-  attr_accessor :value
+  attr_accessor :value, :candidates
 
   def initialize(value)
     @value = value
-    value == "-" ? @candidates = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] : @candidates = [value]
+    @candidates = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
   end
 
   def remove_candidate(num)
