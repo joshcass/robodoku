@@ -1,4 +1,4 @@
-require 'set'
+require 'set'  # => true
 
 module CandidateRemovers
 
@@ -6,7 +6,7 @@ module CandidateRemovers
     remove_locked_values
     remove_hidden_singles
     remove_naked_pairs
-  end
+  end                      # => :remove_candidates
 
   def remove_locked_values
     spots.each do |spot|
@@ -14,7 +14,7 @@ module CandidateRemovers
         unlocked_spots.each {|s| s.remove_candidate(spot.value)}
       end
     end
-  end
+  end                                                             # => :remove_locked_values
 
   def remove_hidden_singles
     unlocked_spots.each do |spot|
@@ -25,7 +25,7 @@ module CandidateRemovers
         end
       end
     end
-  end
+  end                                                                                                                     # => :remove_hidden_singles
 
   def remove_naked_pairs
     unlocked_spots.each do |spot|
@@ -43,24 +43,26 @@ module CandidateRemovers
         end
       end
     end
-  end
+  end                                                      # => :remove_naked_pairs
 
   def remove_hidden_pairs
+    spt1 = 0
+    stp2 = nil
     unlocked_spots.each do |spot|
       spts = unlocked_spots
       crnt = spts.delete(spot)
       crnt.candidates.each do |cdt|
         spts.each do |spt|
           if spt.candidates.one? {|cand| cand == cdt}
-
+            
           end
         end
       end
     end
-  end
+  end                                                  # => :remove_hidden_pairs
 
 
   def unlocked_spots
     spots.reject {|spot| spot.locked?}
-  end
-end
+  end                                   # => :unlocked_spots
+end                                     # => :unlocked_spots
