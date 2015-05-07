@@ -1,3 +1,5 @@
+require 'set'
+
 module CandidateRemovers
 
   def remove_candidates
@@ -42,6 +44,21 @@ module CandidateRemovers
       end
     end
   end
+
+  def remove_hidden_pairs
+    unlocked_spots.each do |spot|
+      spts = unlocked_spots
+      crnt = spts.delete(spot)
+      crnt.candidates.each do |cdt|
+        spts.each do |spt|
+          if spt.candidates.one? {|cand| cand == cdt}
+
+          end
+        end
+      end
+    end
+  end
+
 
   def unlocked_spots
     spots.reject {|spot| spot.locked?}
