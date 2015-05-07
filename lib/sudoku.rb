@@ -1,4 +1,4 @@
-require './lib/solver'
+require_relative 'solver'
 
 puzzle_path = ARGV[0]
 chars       = File.read(puzzle_path).gsub("\n", "").gsub(" ", "-").chars
