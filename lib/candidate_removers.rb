@@ -90,4 +90,5 @@ module CandidateRemovers
   def unlocked_spots
     spots.reject { |spot| spot.locked? }
   end
+
 end
